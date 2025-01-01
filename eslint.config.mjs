@@ -1,18 +1,36 @@
-import { FlatCompat } from '@eslint/eslintrc'
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import eslintPluginReact from "eslint-plugin-react";
+import eslintPluginReactHooks from "eslint-plugin-react-hooks";
+import tsEslintParser from "@typescript-eslint/parser";
+import tsEslintPlugin from "@typescript-eslint/eslint-plugin";
 
-const compat = new FlatCompat({
-  // import.meta.dirname is available after Node.js v20.11.0
-  baseDirectory: import.meta.dirname,
-})
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const eslintConfig = [
-  ...compat.config({
-    extends: ['next'],
-    rules: {
-      'react/no-unescaped-entities': 'off',
-      '@next/next/no-page-custom-font': 'off',
+  {
+    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+      parser: tsEslintParser,
     },
-  }),
-]
+    plugins: {
+      "@typescript-eslint": tsEslintPlugin,
+      react: eslintPluginReact,
+      "react-hooks": eslintPluginReactHooks,
+    },
+    rules: {
+      "react/no-unescaped-entities": "off",
+      "@next/next/no-page-custom-font": "off",
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+  },
+];
 
-export default eslintConfig
+export default eslintConfig;
