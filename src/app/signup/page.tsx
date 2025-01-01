@@ -5,13 +5,20 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+// Define a type for user
+interface User {
+  email: string;
+  password: string;
+  username: string;
+}
+
 export default function SignupPage() {
   const router = useRouter();
-  const [user, setUser] = useState({ email: "", password: "", username: "" });
+  const [user, setUser] = useState<User>({ email: "", password: "", username: "" });
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const onSignup = async (e) => {
+  const onSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
@@ -29,7 +36,7 @@ export default function SignupPage() {
 
   useEffect(() => {
     const { email, password, username } = user;
-    setButtonDisabled(!(email && password && username));
+    setButtonDisabled(!(email && password && username));  // Disable button if fields are empty
   }, [user]);
 
   return (
@@ -94,7 +101,7 @@ export default function SignupPage() {
             type="submit"
             disabled={buttonDisabled}
           >
-           Signup
+            Signup
           </button>
         </form>
         <Link className="flex justify-center items-center mt-4 text-blue-300 hover:underline" href="/login">
