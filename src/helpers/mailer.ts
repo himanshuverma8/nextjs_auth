@@ -39,53 +39,55 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailParams): 
 const actionText = emailType === "VERIFY" ? "verify your email" : "reset your password";
 
 const mailOptions = {
-    from: 'hv <no-reply@hv.com>',
+    from: 'Support <support@hv.com>',
     to: email,
-    subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
+    subject: emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password",
     html: `
-        <div style="position: relative; padding: 20px; font-family: Arial, sans-serif; color: #333;">
-            <!-- Background image -->
-            <div style="
-                background-image: url('https://files.hvin.tech/lighting_logo.png'); 
-                background-size: cover; 
-                background-position: center; 
-                opacity: 0.4; 
-                position: absolute; 
-                top: 0; 
-                left: 0; 
-                width: 100%; 
-                height: 100%; 
-                z-index: 0;">
-            </div>
-            <!-- Content -->
-            <div style="
-                position: relative; 
-                z-index: 1; 
-                background-color: rgba(255, 255, 255, 0.9); 
-                padding: 20px; 
-                border-radius: 8px; 
-                max-width: 600px; 
-                margin: auto; 
-                text-align: center;">
-                <!-- Centered Logo -->
-                <img src="https://files.hvin.tech/lighting_logo.png" alt="hv logo" 
-                    style="width: 50px; height: 50px; margin-bottom: 20px;" />
-                <p>
-                    Click <a href="${url}" style="color: #1a73e8; text-decoration: none;">here</a> 
-                    to ${actionText} or copy and paste the link below into your browser make sure you are logged in with your email and password:
-                </p>
-                <p style="
-                    font-size: 0.9em; 
-                    background-color: #f5f5f5; 
-                    padding: 10px; 
-                    border-radius: 5px; 
-                    word-wrap: break-word;">
-                    ${url}
-                </p>
-            </div>
-        </div>
+        <table style="width: 100%; max-width: 600px; margin: auto; font-family: Arial, sans-serif; color: #333; border: 1px solid #ddd; border-radius: 8px; padding: 20px;">
+            <tr>
+                <td style="text-align: center; padding: 10px;">
+                    <img src="https://files.hvin.tech/lighting_logo.png" alt="HV Logo" style="width: 50px; height: 50px; margin-bottom: 10px;" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; padding: 10px;">
+                    <h1 style="font-size: 20px; color: #333;">
+                        ${emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"}
+                    </h1>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; text-align: left;">
+                    <p>
+                        Click <a href="${url}" style="color: #1a73e8; text-decoration: none;">here</a> 
+                        to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}.
+                        Alternatively, you can copy and paste the link below into your browser:
+                    </p>
+                    <p style="font-size: 0.9em; background-color: #f5f5f5; padding: 10px; border-radius: 5px; word-wrap: break-word;">
+                        ${url}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; padding: 10px;">
+                    <p style="font-size: 0.8em; color: #888;">
+                        If you didn't request this email, please ignore it.
+                    </p>
+                    <p style="font-size: 0.8em; color: #888;">
+                        For any assistance, contact us at <a href="mailto:support@hv.com" style="color: #1a73e8; text-decoration: none;">support@hv.com</a>.
+                    </p>
+                </td>
+            </tr>
+        </table>
+    `,
+    text: `
+        ${emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"}
+        Click the link below to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}:
+        ${url}
+        If you didn't request this email, please ignore it. Contact us at support@hv.com for assistance.
     `,
 };
+
 
 
 
