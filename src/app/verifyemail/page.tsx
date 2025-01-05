@@ -56,11 +56,13 @@ export default function VerifyEmailPage() {
   
       {verified && (
           <div>
-              <h2 className="text-2xl">Email Verified redirecting to profile</h2>
-              <Link href="/login">
-                  Login
-              </Link>
+              <h2 className="text-2xl text-green-600">Email Verified redirecting to profile</h2>
           </div>
+      )}
+      {!verified && (
+         <div>
+         <h2 className="text-2xl text-red-600">Verifying your email please wait...</h2>
+     </div>
       )}
       {error && (
           <div>
