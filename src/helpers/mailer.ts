@@ -43,23 +43,33 @@ const mailOptions = {
     to: email,
     subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
     html: `
-        <div style="
-            background-image: url('https://files.hvin.tech/lighting_logo.png'); 
-            background-size: cover; 
-            background-position: center; 
-            padding: 20px;
-            opacity: 40%;
-            font-family: Arial, sans-serif; 
-            color: #333;">
-            <div style="background-color: rgba(255, 255, 255, 0.9); 
-                        padding: 20px; 
-                        border-radius: 8px; 
-                        max-width: 600px; 
-                        margin: auto;">
+        <div style="position: relative; padding: 20px; font-family: Arial, sans-serif; color: #333;">
+            <!-- Background image -->
+            <div style="
+                background-image: url('https://files.hvin.tech/lighting_logo.png'); 
+                background-size: cover; 
+                background-position: center; 
+                opacity: 0.4; 
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                width: 100%; 
+                height: 100%; 
+                z-index: 0;">
+            </div>
+            <!-- Content -->
+            <div style="
+                position: relative; 
+                z-index: 1; 
+                background-color: rgba(255, 255, 255, 0.9); 
+                padding: 20px; 
+                border-radius: 8px; 
+                max-width: 600px; 
+                margin: auto;">
                 <h1 style="text-align: center;">${emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"}</h1>
                 <p>
                     Click <a href="${url}" style="color: #1a73e8; text-decoration: none;">here</a> 
-                    to ${actionText} or copy and paste the link below into your browser and make sure you are logged in with your email and password
+                    to ${actionText} or copy and paste the link below into your browser make sure you are logged in with your email and password:
                 </p>
                 <p style="
                     font-size: 0.9em; 
@@ -73,6 +83,7 @@ const mailOptions = {
         </div>
     `,
 };
+
 
         // Send the email
         const mailResponse = await transport.sendMail(mailOptions);
