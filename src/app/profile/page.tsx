@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { TypewriterEffect, TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import DarkModeButton from "@/components/ui/darkmodeButton";
 
 interface UserData {
@@ -88,10 +88,11 @@ export default function ProfilePage() {
       text: "back",
     },
     {
-      text: `${data?.name || ""}`,
+      text: `${data?.name || "null"}`,
       className: "text-blue-500 dark:text-blue-500",
     },
   ];
+
 
   return (
     <div className="flex flex-col items-center justify-center h-[40rem] ">
@@ -104,7 +105,7 @@ export default function ProfilePage() {
             : `A verification email is sent to ${data.email}`
           : "Loading..."}
       </p>
-      <TypewriterEffect words={words} />
+      <TypewriterEffectSmooth words={words}/>
       <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10">
         <button
           onClick={logout}

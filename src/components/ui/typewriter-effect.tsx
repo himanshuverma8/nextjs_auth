@@ -33,7 +33,7 @@ export const TypewriterEffect = ({
         {
           display: "inline-block",
           opacity: 1,
-          width: "fit-content",
+          width: "auto",
         },
         {
           duration: 0.3,
