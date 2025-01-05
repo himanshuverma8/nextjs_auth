@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 
-export default function DarkModeButton({ style }) {
-  // State to track whether the toggle is checked
+interface DarkModeButtonProps {
+  style?: CSSProperties; // Optional style prop with CSSProperties type
+}
+
+export default function DarkModeButton({ style }: DarkModeButtonProps) {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Function to handle toggle state
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("dark");
