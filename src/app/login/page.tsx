@@ -12,7 +12,6 @@ import {
   IconBrandGoogle,
   IconBrandOnlyfans,
 } from "@tabler/icons-react";
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import DarkModeButton from "@/components/ui/darkmodeButton";
 import Spinner from "@/components/ui/spinner";
 // Define a type for user
