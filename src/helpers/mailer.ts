@@ -65,8 +65,11 @@ const mailOptions = {
                 padding: 20px; 
                 border-radius: 8px; 
                 max-width: 600px; 
-                margin: auto;">
-                <h1 style="text-align: center;">${emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"}</h1>
+                margin: auto; 
+                text-align: center;">
+                <!-- Centered Logo -->
+                <img src="https://files.hvin.tech/lighting_logo.png" alt="hv logo" 
+                    style="width: 50px; height: 50px; margin-bottom: 20px;" />
                 <p>
                     Click <a href="${url}" style="color: #1a73e8; text-decoration: none;">here</a> 
                     to ${actionText} or copy and paste the link below into your browser make sure you are logged in with your email and password:
@@ -83,6 +86,7 @@ const mailOptions = {
         </div>
     `,
 };
+
 
 
         // Send the email
