@@ -48,6 +48,7 @@ const mailOptions = {
             background-size: cover; 
             background-position: center; 
             padding: 20px;
+            opacity: 40%;
             font-family: Arial, sans-serif; 
             color: #333;">
             <div style="background-color: rgba(255, 255, 255, 0.9); 
@@ -58,7 +59,7 @@ const mailOptions = {
                 <h1 style="text-align: center;">${emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"}</h1>
                 <p>
                     Click <a href="${url}" style="color: #1a73e8; text-decoration: none;">here</a> 
-                    to ${actionText} or copy and paste the link below into your browser: 
+                    to ${actionText} or copy and paste the link below into your browser and make sure you are logged in with your email and password
                 </p>
                 <p style="
                     font-size: 0.9em; 

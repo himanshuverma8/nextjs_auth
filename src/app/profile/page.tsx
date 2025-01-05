@@ -88,7 +88,7 @@ export default function ProfilePage() {
       text: "back",
     },
     {
-      text: `${data?.name || "null"}`,
+      text: `${data?.name || "fetching from database"}`,
       className: "text-blue-500 dark:text-blue-500",
     },
   ];
