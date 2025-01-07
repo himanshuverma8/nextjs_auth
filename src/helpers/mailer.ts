@@ -87,7 +87,7 @@ const mailOptions = {
         ${emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"}
         Click the link below to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}:
         ${url}
-        If you didn't request this email, please ignore it. Contact us at support@hv.com for assistance.
+        If you didn't request this email, please ignore it. Contact us at hvincloud@gmail.com for assistance.
     `,
 };
 

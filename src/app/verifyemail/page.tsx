@@ -52,11 +52,11 @@ export default function VerifyEmailPage() {
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
 
       <h1 className="text-4xl mb-4">Verify Email</h1>
-      <h2 className="p-2 bg-orange-500 text-black rounded-md">{token ? `${token}` : "no token redirecting back to profile page..."}</h2>
+      <h2 className="p-2 bg-orange-500 text-red font-bold rounded-md">{token ? `${token}` : "no token redirecting back to profile/login..."}</h2>
   
       {verified && (
           <div>
-              <h2 className="text-2xl text-green-600">Email Verified redirecting to profile</h2>
+              <h2 className="text-2xl text-green-600">Email Verified redirecting to profile/login</h2>
           </div>
       )}
       {!verified && (
