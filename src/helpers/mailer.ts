@@ -35,7 +35,10 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailParams): 
             },
         });
 
-        const url = `${process.env.DOMAIN}verifyemail?token=${hashedToken}`;
+        const url =
+        emailType === "VERIFY"
+            ? `${process.env.DOMAIN}verifyemail?token=${hashedToken}`
+            : `${process.env.DOMAIN}resetpassword?token=${hashedToken}`;
 const actionText = emailType === "VERIFY" ? "verify your email" : "reset your password";
 
 const mailOptions = {

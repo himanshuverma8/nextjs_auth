@@ -14,48 +14,53 @@ import {
 } from "@tabler/icons-react";
 import DarkModeButton from "@/components/ui/darkmodeButton";
 import Spinner from "@/components/ui/spinner";
-// Define a type for user
-interface User {
-  name: string,
-  email: string;
-  password: string;
-  username: string;
-}
 
-
-export default function LoginPage() {
+export default function ForgotPasswordPage() {
   const router = useRouter();
   const [user, setUser] = useState({
-    email: "",
     password: "",
+    token: ""
   });
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const onLogin = async (e: React.FormEvent) => {
+  const resetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      const response = await axios.post("/api/users/login", user);
-      toast.success("Login successful!");
-      setTimeout(()=>{
-        router.push("/profile");
-      },1000)
+        setLoading(true);
+      const response = await axios.post('/api/users/resetpassword', user);
+      toast.success("Password reset successfully!");
+      setTimeout(() => {
+        router.push("/login");
+      }, 1000);
     } catch (error: any) {
-      toast.error("Login failed please try again.");
-    } finally {
-      setLoading(false);
+      toast.error("Someting went wrong!")
+      toast.error(error.message)
+    } finally{
+        setLoading(false);
     }
   };
+  
 
   useEffect(() => {
-    if (user.email && user.password) {
+    if (user.password) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
     }
   }, [user]);
 
+
+
+   useEffect(() => {
+           const urlToken = window.location.search.split("=")[1];
+           setUser((prevUser) => ({
+            ...prevUser, 
+            token: urlToken, 
+        }));
+       }, []);
+   
   return (
     <div className="h-[50rem] w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
     <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -65,13 +70,13 @@ export default function LoginPage() {
     <DarkModeButton style={{ position: 'absolute', top: '20px', right: '16px' }} />
   <div className="max-w-md w-full mx-auto rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
  <h2 className="text-center font-bold text-xl text-neutral-800 dark:text-neutral-200">
- {loading ? "Processing..." : "Login Now"}
+ {loading ? "Processing..." : "Reset Your Password"}
  </h2>
- <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+ {/* <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
    <span className="text-blue-300"><a href="/signup">Signup</a></span> with your username and password if you don't have an account with us.
- </p>
+ </p> */}
 
- <form className="my-8" onSubmit={onLogin}>
+ <form className="my-8" onSubmit={resetPassword}>
 
 
 
@@ -94,14 +99,14 @@ export default function LoginPage() {
         />
      </LabelInputContainer>
    </div> */}
-   <LabelInputContainer className="mb-4">
+   {/* <LabelInputContainer className="mb-4">
      <Label htmlFor="email">Email</Label>
      <Input 
       value={user.email}
       onChange={(e) => setUser({ ...user, email: e.target.value })}
      id="email" placeholder="enter your email" type="text" 
      />
-   </LabelInputContainer>
+   </LabelInputContainer> */}
    {/* <LabelInputContainer className="mb-4">
      <Label htmlFor="email">Email Address</Label>
      <Input 
@@ -111,7 +116,7 @@ export default function LoginPage() {
      />
    </LabelInputContainer> */}
    <LabelInputContainer className="mb-4">
-     <Label htmlFor="password">Password</Label>
+     <Label htmlFor="password">Enter New Password</Label>
      <Input
       value={user.password}
      onChange={(e) => setUser({ ...user, password: e.target.value })}
@@ -126,7 +131,7 @@ export default function LoginPage() {
        type="twitterpassword"
      />
    </LabelInputContainer> */}
-<p className="text-blue-300 text-right mb-2 text-sm"><a href="/forgotpassword">Forgot password?</a></p>
+<p className="text-blue-300 text-right mb-2 text-sm"><a href="/login">Login?</a></p>
 <button
   className={`bg-gradient-to-br relative group/btn 
     ${buttonDisabled ? 'bg-black text-white cursor-not-allowed' : 'from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600'}
@@ -136,7 +141,7 @@ export default function LoginPage() {
   type="submit"
   disabled={buttonDisabled}
 >
-  Login &rarr;
+  Reset Password &rarr;
   <BottomGradient />
 </button>
 
