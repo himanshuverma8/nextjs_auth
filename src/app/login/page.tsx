@@ -40,7 +40,7 @@ export default function LoginPage() {
       toast.success("Login successful!");
       setTimeout(()=>{
         router.push("/profile");
-      },1000)
+      },500)
     } catch (error: any) {
       toast.error("Login failed please try again.");
     } finally {
@@ -68,7 +68,7 @@ export default function LoginPage() {
  {loading ? "Processing..." : "Login Now"}
  </h2>
  <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-   <span className="text-blue-300"><a href="/signup">Signup</a></span> with your username and password if you don't have an account with us.
+   <Link className="text-blue-300" href="/signup">Signup</Link> with your username and password if you don't have an account with us.
  </p>
 
  <form className="my-8" onSubmit={onLogin}>
@@ -126,7 +126,7 @@ export default function LoginPage() {
        type="twitterpassword"
      />
    </LabelInputContainer> */}
-<p className="text-blue-300 text-right mb-2 text-sm"><a href="/forgotpassword">Forgot password?</a></p>
+<p className="text-blue-300 text-right mb-2 text-sm"><Link href="/forgotpassword">Forgot Password?</Link></p>
 <button
   className={`bg-gradient-to-br relative group/btn 
     ${buttonDisabled ? 'bg-black text-white cursor-not-allowed' : 'from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600'}

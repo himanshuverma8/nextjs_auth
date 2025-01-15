@@ -64,7 +64,7 @@ export default function SignupPage() {
  {loading ? "Processing..." : "Signup Now"}
  </h2>
  <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-   <span className="text-blue-300"><a href="/login">Login</a></span> with your username and password if you have already an account with us.
+   <Link className="text-blue-300" href="/login">Login</Link> with your username and password if you don't have an account with us.
  </p>
 
  <form className="my-8" onSubmit={onSignup}>

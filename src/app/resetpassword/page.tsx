@@ -131,7 +131,7 @@ export default function ForgotPasswordPage() {
        type="twitterpassword"
      />
    </LabelInputContainer> */}
-<p className="text-blue-300 text-right mb-2 text-sm"><a href="/login">Login?</a></p>
+<p className="text-blue-300 text-right mb-2 text-sm"><Link href="/login">Login?</Link></p>
 <button
   className={`bg-gradient-to-br relative group/btn 
     ${buttonDisabled ? 'bg-black text-white cursor-not-allowed' : 'from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600'}
