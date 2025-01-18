@@ -95,7 +95,7 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center h-[40rem] ">
+    <div className="flex flex-col items-center justify-center min-h-screen ">
       <ToastContainer />
       <DarkModeButton style={{ position: "absolute", top: "20px", right: "16px" }} />
       <p className="text-neutral-600 dark:text-neutral-200 text-base mb-10 text-center">

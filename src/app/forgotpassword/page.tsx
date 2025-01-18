@@ -53,7 +53,7 @@ export default function ForgotPasswordPage() {
   }, [user]);
 
   return (
-    <div className="h-[50rem] w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
+    <div className="min-h-screen w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
     <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
     <div className="z-10 container flex justify-center items-center min-h-screen w-4/5 md:w-full">
     <ToastContainer />
