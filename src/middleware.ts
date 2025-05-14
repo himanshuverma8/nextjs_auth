@@ -1,31 +1,27 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
- 
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const path = request.nextUrl.pathname
+  const path = request.nextUrl.pathname;
 
-  const isPublicPath = path === '/login' || path === '/signup'
+  const isPublicPath = path === "/login" || path === "/signup";
+  
+  const token =
+    request.cookies.get("token")?.value || // Your custom JWT token
+    request.cookies.get("next-auth.session-token")?.value || // For HTTP
+    request.cookies.get("__Secure-next-auth.session-token")?.value || ""; // For HTTPS
 
-  const token = request.cookies.get('token')?.value || ''
-
-  if(isPublicPath && token) {
-    return NextResponse.redirect(new URL('/profile', request.nextUrl))
+  if (isPublicPath && token) {
+    return NextResponse.redirect(new URL("/profile", request.nextUrl));
   }
 
   if (!isPublicPath && !token) {
-    return NextResponse.redirect(new URL('/login', request.nextUrl))
+    return NextResponse.redirect(new URL("/login", request.nextUrl));
   }
-    
+
+  return NextResponse.next();
 }
 
- 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: [
-    '/',
-    '/profile',
-    '/login',
-    '/signup'
-  ]
-}
+  matcher: ["/", "/profile", "/login", "/signup"],
+};
